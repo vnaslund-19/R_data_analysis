@@ -71,15 +71,15 @@ my_playlist <- subset(spotify_track_data, artist_name %in% c("Rihanna", "Michael
 
 #####-----Q5------####
 
+median_danceability_in_my_playlist <- median(my_playlist$danceability)
 
-dance_tracks <- 
+dance_tracks <- subset(my_playlist, danceability > median_danceability_in_my_playlist)
 
 
 #####-----Q6------####
 
 
-Rihanna_dance_tracks <- 
-
+Rihanna_dance_tracks <- nrow(subset(dance_tracks, artist_name == "Rihanna")) / nrow(my_playlist)
 
 #####-----Q7------####
 
@@ -88,5 +88,6 @@ Rihanna_dance_tracks <-
 
 corrected_playlist <- spotify_track_data
 
-
+corrected_playlist$danceability[corrected_playlist$artist_name == "Michael Jackson"] <- 
+  corrected_playlist$danceability[corrected_playlist$artist_name == "Michael Jackson"] - 0.05
 
